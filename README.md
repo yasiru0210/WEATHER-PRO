@@ -37,7 +37,8 @@ Responsive Design: Ensures compatibility across desktops, tablets, and mobile de
 
 
 How to Use:
-Visit the WEATHER-PRO website.
+
+Visit the WEATHER-PRO website.https://yasiru0210.github.io/WEATHER-PRO/
 
 Enter a location in the search bar to view current weather and forecast data.
 

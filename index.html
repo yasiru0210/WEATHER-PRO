@@ -210,7 +210,14 @@
                         <button class="map-control-btn" data-layer="wind">Wind</button>
                         <button class="map-control-btn" data-layer="clouds">Clouds</button>
                     </div>
-                    <div id="weather-map" class="weather-map"></div>
+                    <div id="weather-map" class="weather-map">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map"></i>
+                            <h3>Maps Unavailable</h3>
+                            <p>Google Maps API key required to display weather maps.</p>
+                            <p>Please configure a valid API key in the settings.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -325,6 +332,4 @@
     <script src="src/js/maps.js"></script>
     <script src="src/js/settings.js"></script>
     <script src="src/js/app.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABnxrBEr2vk--_QBI4rbp3I0NSfKWVGTQ&libraries=places&callback=initMap" async defer></script>
-</body>
-</html>
+    <!-- Google Maps script removed until valid API key is configured -->

@@ -202,6 +202,14 @@ class WeatherDisplay {
     } catch (error) {
       console.error('Geolocation error:', error);
       Utils.showToast(error.message, 'error');
+      
+      // Load default location weather data as fallback
+      try {
+        await this.loadWeatherData(CONFIG.DEFAULTS.LOCATION);
+      } catch (fallbackError) {
+        console.error('Failed to load default location:', fallbackError);
+        Utils.showToast('Failed to load weather data. Please try searching for a location.', 'error');
+      }
     } finally {
       Utils.showLoading(false);
     }

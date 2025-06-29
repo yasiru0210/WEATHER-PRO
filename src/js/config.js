@@ -15,7 +15,7 @@ const CONFIG = {
 
   // Google Maps API configuration
   GOOGLE_MAPS: {
-    KEY: 'AIzaSyABnxrBEr2vk--_QBI4rbp3I0NSfKWVGTQ'
+    KEY: 'YOUR_GOOGLE_MAPS_API_KEY_HERE' // Replace with your actual Google Maps API key
   },
 
   // Default settings

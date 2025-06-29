@@ -3,101 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEATHER PRO</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Weather Pro - Professional Weather Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="icon" type="image/svg+xml" href="/weather-icon.svg">
 </head>
 <body>
-    <div class="tab">
-        <a href="#" class="tablink d-none d-md-block" onclick="getcontent(event,'current')">Information</a>
-        <a href="#" class="tablink d-md-none" onclick="getcontent(event,'current')"><i class="bi bi-geo-alt-fill"></i></a>
-        <!-- <a class="tablink d-none d-md-block" onclick="getcontent(event,'alert')">Alerts</a>
-        <a class="tablink d-md-none" onclick="getcontent(event,'alert')"><i class="bi bi-exclamation-triangle-fill"></i></a> -->
-    </div>
-    <div class="main">
-        <div id="current" class="tabcontent">
-            <div class="container">
-                <div class="row my-3">
-                    <div class="col-md-6 d-flex align-items-center">
-                        <input type="text" name="location" id="txtlocation" class="form-control">
-                    </div> 
-                    <div class="col-md-6 d-flex align-items-center">
-                        <button class="btn btn-primary" onclick="searcharea()">Search</button>
-                    </div>
-                </div>
-                <div class="row g-1  d-flex justify-content-center mb-3">
-                    <div class="col-md-4 content text-center rounded-5 fw-bolder">
-                        <h1 class="contentheading">Temperature</h1>
-                        <p id="tempreture" class="tempreture"></p>
-                    </div>
-                    <div class="col-md-4 content text-center rounded-5 fw-bolder">
-                        <h1 class="contentheading">Location</h1>
-                        <p id="location" class="location"></p>
-                    </div>
-                    <div class="col-md-4 rounded-5 content">
-                        <h1></h1>
-                        <div class="container-fluid ">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-12 d-flex justify-content-center" id="cloud-img"></div>
-                                <div class="col-12 text-center fw-bolder fs-1" id="condition"></div> 
-                            </div>
-                        </div>  
-                    </div>
-                </div>
-                <div class="row g-1 d-flex justify-content-center mb-3">
-                    <div class="col-md-4 content text-center rounded-5 fw-bolder">
-                        <h1 class="contentheading">Wind Speed</h1>
-                        <p id="wind" class="wind"></p>
-                    </div>
-                    <div class="col-md-4 content text-center rounded-5 fw-bolder">
-                        <h1 class="contentheading">Wind Direction</h1>
-                        <p id="wind-dir" class="wind-dir"></p>
-                    </div>
-                    <div class="col-md-4 content text-center rounded-5 fw-bolder">
-                        <h1 class="contentheading">Humidity</h1>
-                        <p id="humidity" class="humidity"></p>
-                    </div>
-                </div>
-                <div class="row g-1 colour2 d-flex justify-content-center mb-3">
-                    <div id="googleMap" class="col-12" style="height:400px;"></div>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-cloud-sun"></i>
+                <span>Weather Pro</span>
             </div>
-        </div> 
-        <div id="alert" class="tabcontent">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        
-                    </div>
-                </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#forecast" class="nav-link" data-section="forecast">
+                    <i class="fas fa-calendar-week"></i>
+                    <span>Forecast</span>
+                </a>
+                <a href="#maps" class="nav-link" data-section="maps">
+                    <i class="fas fa-map"></i>
+                    <span>Maps</span>
+                </a>
+                <a href="#alerts" class="nav-link" data-section="alerts">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Alerts</span>
+                </a>
+                <a href="#settings" class="nav-link" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </div>
-    <div class="tab">
-        <a href="index.html" class="tablink d-none d-md-block">Information</a>
-        <a href="forecast.html" class="tablink d-none d-md-block">Forecast</a>
-        <a href="historical.html" class="tablink d-none d-md-block">Historical Data</a>
-        <a href="settings.html" class="tablink d-none d-md-block">Settings</a>
-        <a href="current-details.html" class="tablink d-none d-md-block">Current Details</a>
-        <a href="alerts.html" class="tablink d-none d-md-block">Alerts</a>
-        <a href="about.html" class="tablink d-none d-md-block">About</a>
-        <a href="contact.html" class="tablink d-none d-md-block">Contact</a>
-        <!-- Mobile icons -->
-        <a href="index.html" class="tablink d-md-none"><i class="bi bi-geo-alt-fill"></i></a>
-        <a href="forecast.html" class="tablink d-md-none"><i class="bi bi-calendar-week"></i></a>
-        <a href="historical.html" class="tablink d-md-none"><i class="bi bi-clock-history"></i></a>
-        <a href="settings.html" class="tablink d-md-none"><i class="bi bi-gear-fill"></i></a>
-        <a href="current-details.html" class="tablink d-md-none"><i class="bi bi-info-circle"></i></a>
-        <a href="alerts.html" class="tablink d-md-none"><i class="bi bi-bell-fill"></i></a>
-        <a href="about.html" class="tablink d-md-none"><i class="bi bi-question-circle"></i></a>
-        <a href="contact.html" class="tablink d-md-none"><i class="bi bi-envelope-fill"></i></a>
-    </div>
-    
-    
+    </nav>
 
-    <script src="app.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABnxrBEr2vk--_QBI4rbp3I0NSfKWVGTQ&callback=myMap"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="location-search" placeholder="Search for a city or location..." autocomplete="off">
+                        <button type="button" id="search-btn" class="search-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <button type="button" id="location-btn" class="location-btn" title="Use current location">
+                        <i class="fas fa-location-arrow"></i>
+                    </button>
+                </div>
+
+                <!-- Weather Cards -->
+                <div class="weather-grid">
+                    <!-- Current Weather Card -->
+                    <div class="weather-card current-weather">
+                        <div class="card-header">
+                            <h2>Current Weather</h2>
+                            <span class="last-updated" id="last-updated">Updated now</span>
+                        </div>
+                        <div class="current-weather-content">
+                            <div class="weather-main">
+                                <div class="weather-icon" id="current-icon">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div class="weather-info">
+                                    <div class="temperature" id="current-temp">--°</div>
+                                    <div class="condition" id="current-condition">--</div>
+                                    <div class="location" id="current-location">Select a location</div>
+                                </div>
+                            </div>
+                            <div class="weather-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Visibility</span>
+                                    <span id="visibility">-- km</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-tint"></i>
+                                    <span>Humidity</span>
+                                    <span id="humidity">--%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-wind"></i>
+                                    <span>Wind</span>
+                                    <span id="wind-speed">-- km/h</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <span>Feels like</span>
+                                    <span id="feels-like">--°</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-compress-arrows-alt"></i>
+                                    <span>Pressure</span>
+                                    <span id="pressure">-- hPa</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-sun"></i>
+                                    <span>UV Index</span>
+                                    <span id="uv-index">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hourly Forecast Card -->
+                    <div class="weather-card hourly-forecast">
+                        <div class="card-header">
+                            <h3>24-Hour Forecast</h3>
+                        </div>
+                        <div class="hourly-scroll" id="hourly-forecast">
+                            <!-- Hourly items will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Air Quality Card -->
+                    <div class="weather-card air-quality">
+                        <div class="card-header">
+                            <h3>Air Quality</h3>
+                        </div>
+                        <div class="air-quality-content">
+                            <div class="aqi-circle" id="aqi-circle">
+                                <span class="aqi-value" id="aqi-value">--</span>
+                                <span class="aqi-label">AQI</span>
+                            </div>
+                            <div class="aqi-details">
+                                <div class="aqi-status" id="aqi-status">--</div>
+                                <div class="aqi-description" id="aqi-description">Air quality data unavailable</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sun & Moon Card -->
+                    <div class="weather-card sun-moon">
+                        <div class="card-header">
+                            <h3>Sun & Moon</h3>
+                        </div>
+                        <div class="sun-moon-content">
+                            <div class="sun-info">
+                                <div class="sun-item">
+                                    <i class="fas fa-sun"></i>
+                                    <div>
+                                        <span class="label">Sunrise</span>
+                                        <span class="time" id="sunrise">--:--</span>
+                                    </div>
+                                </div>
+                                <div class="sun-item">
+                                    <i class="fas fa-sun"></i>
+                                    <div>
+                                        <span class="label">Sunset</span>
+                                        <span class="time" id="sunset">--:--</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="moon-info">
+                                <div class="moon-phase" id="moon-phase">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <span class="moon-label" id="moon-label">New Moon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forecast Section -->
+        <section id="forecast" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>7-Day Forecast</h2>
+                    <p>Extended weather forecast for the upcoming week</p>
+                </div>
+                <div class="forecast-container" id="forecast-container">
+                    <!-- Forecast items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Maps Section -->
+        <section id="maps" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Weather Maps</h2>
+                    <p>Interactive weather visualization</p>
+                </div>
+                <div class="map-container">
+                    <div class="map-controls">
+                        <button class="map-control-btn active" data-layer="temperature">Temperature</button>
+                        <button class="map-control-btn" data-layer="precipitation">Precipitation</button>
+                        <button class="map-control-btn" data-layer="wind">Wind</button>
+                        <button class="map-control-btn" data-layer="clouds">Clouds</button>
+                    </div>
+                    <div id="weather-map" class="weather-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Weather Alerts</h2>
+                    <p>Stay informed about severe weather conditions</p>
+                </div>
+                <div class="alerts-container" id="alerts-container">
+                    <div class="no-alerts">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>No Active Alerts</h3>
+                        <p>There are currently no weather alerts for your location.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Settings</h2>
+                    <p>Customize your weather experience</p>
+                </div>
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Units</h3>
+                        <div class="setting-item">
+                            <label for="temp-unit">Temperature</label>
+                            <select id="temp-unit" class="setting-select">
+                                <option value="celsius">Celsius (°C)</option>
+                                <option value="fahrenheit">Fahrenheit (°F)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label for="wind-unit">Wind Speed</label>
+                            <select id="wind-unit" class="setting-select">
+                                <option value="kmh">km/h</option>
+                                <option value="mph">mph</option>
+                                <option value="ms">m/s</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label for="pressure-unit">Pressure</label>
+                            <select id="pressure-unit" class="setting-select">
+                                <option value="hpa">hPa</option>
+                                <option value="inhg">inHg</option>
+                                <option value="mmhg">mmHg</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="settings-card">
+                        <h3>Appearance</h3>
+                        <div class="setting-item">
+                            <label for="theme">Theme</label>
+                            <select id="theme" class="setting-select">
+                                <option value="auto">Auto</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Animations</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="animations" checked>
+                                <label for="animations" class="toggle-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-card">
+                        <h3>Notifications</h3>
+                        <div class="setting-item">
+                            <label>Weather Alerts</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="weather-alerts" checked>
+                                <label for="weather-alerts" class="toggle-label"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Daily Forecast</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="daily-forecast">
+                                <label for="daily-forecast" class="toggle-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="src/js/config.js"></script>
+    <script src="src/js/utils.js"></script>
+    <script src="src/js/weather-api.js"></script>
+    <script src="src/js/ui-components.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/weather-display.js"></script>
+    <script src="src/js/forecast.js"></script>
+    <script src="src/js/maps.js"></script>
+    <script src="src/js/settings.js"></script>
+    <script src="src/js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABnxrBEr2vk--_QBI4rbp3I0NSfKWVGTQ&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
